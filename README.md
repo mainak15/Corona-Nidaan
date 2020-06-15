@@ -18,12 +18,27 @@ The main requirements are listed below:
 * Scikit-Learn
 * Matplotlib
 
-Additional requirements to generate dataset:
-
-* PyDicom
-* Pandas
 
 
+## ChestX Dataset
+The dataset was formed by combining three different open access chest X-ray datasets:
+* https://github.com/ieee8023/covid-chestxray-dataset
+* https://github.com/agchung/Figure1-COVID-chestxray-dataset
+* https://www.kaggle.com/c/rsna-pneumonia-detection-challenge
+
+## Steps for training
+* To train the Corona-Nidaan deep neural network from scratch using the ChestX dataset run the following command:
+```
+python model_covid_vs_normal_vs_pneumonia_v1.py
+```
+* To train the transfer learning model run the following commands:
+```
+python train_DenseNet201.py
+python train_InceptionResNetV2.py
+python train_InceptionV3.py
+python train_MobileNetV2.py
+python train_VGG19.py
+```
 
 
 
