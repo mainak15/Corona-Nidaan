@@ -41,12 +41,17 @@ python train_VGG19.py
 ```
 ## Steps for testing
 * Locate the checkpoint files (./data/checkpoints/)
-* To test the Corona-Nidaan deep neural network or transfer learning model run the following command (change the "save_path" by checkpoint file's name to load the respective trained model and change the "batch_size" as well, it will be the same as training): 
+* To test the Corona-Nidaan deep neural network or transfer learning model run the following command (provide the name of the checkpoint file to "save_path" in the "covid_vs_normal_vs_pneumonia_prediction.py" script to load the respective trained model and change the "batch_size" as well, it will be the same as training): 
 ```
 python covid_vs_normal_vs_pneumonia_prediction.py
 ```
 
 ## Steps for running the demo app
+* Locate the checkpoint files (./data/checkpoints/)
+* Provide the name of the checkpoint file to "save_path" in the "covid_vs_normal_vs_pneumonia_prediction.py" script to load the respective trained model then run the following command:
+```
+python GUI.py
+```
 
 
 
