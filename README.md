@@ -2,7 +2,7 @@ Corona-Nidaan: Lightweight Deep Convolutional Neural Network for Chest X-Ray bas
 ===========
 
 <p align="center">
-	<img src="/covidnetv3-3p-rca.png"  width="70%" height="70%">
+	<img src="images/GUI1.png"  width="100%" height="100%">
 	<br>
 	<em>Graphical abstract of our proposed Corona-Nidaan model.</em>
 </p>
