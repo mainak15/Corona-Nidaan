@@ -39,9 +39,14 @@ python train_InceptionV3.py
 python train_MobileNetV2.py
 python train_VGG19.py
 ```
+## Steps for testing
+* Locate the checkpoint files (./data/checkpoints/)
+* To test the Corona-Nidaan deep neural network or transfer learning model run the following command (change the "save_path" by checkpoint file's name to load the respective trained model and change the "batch_size" as well, it will be the same as training): 
+```
+python covid_vs_normal_vs_pneumonia_prediction.py
+```
 
-
-
+## Steps for running the demo app
 
 
 
