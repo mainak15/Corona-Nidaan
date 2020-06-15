@@ -1,8 +1,12 @@
 Corona-Nidaan: Lightweight Deep Convolutional Neural Network for Chest X-Ray based COVID-19 Infection Detection.
 ===========
 
-
-
+<p align="center">
+	<img src="/covidnetv3-3p-rca.png"  width="70%" height="70%">
+	<br>
+	<em>Graphical abstract of our proposed Corona-Nidaan model.</em>
+</p>
+Please see our paper for the details.
 
 ## Requirements
 
@@ -17,8 +21,6 @@ The main requirements are listed below:
 * Numpy
 * Scikit-Learn
 * Matplotlib
-
-
 
 ## ChestX Dataset
 The dataset was formed by combining three different open access chest X-ray datasets:
@@ -48,7 +50,7 @@ python covid_vs_normal_vs_pneumonia_prediction.py
 
 ## Steps for running the demo app
 * Locate the checkpoint files (./data/checkpoints/)
-* Provide the name of the checkpoint file to "save_path" in the "covid_vs_normal_vs_pneumonia_prediction.py" script to load the respective trained model then run the following command:
+* Provide the name of the checkpoint file to "save_path" in the "covid_vs_normal_vs_pneumonia_prediction.py" script to load the respective trained model and then run the following command:
 ```
 python GUI.py
 ```
