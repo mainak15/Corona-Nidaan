@@ -4,7 +4,24 @@ Corona-Nidaan: Lightweight Deep Convolutional Neural Network for Chest X-Ray bas
 
 
 
+## Requirements
 
+The main requirements are listed below:
+
+* Tested with NVIDIA GeForce GTX 1050 Ti
+* Tested with CUDA v10.0.130 Tool kit and CuDNN v7.6.5
+* Python 3.7.7
+* OpenCV 4.1.1
+* Keras 2.2.4 API
+* Tested with TensorFlow-GPU v1.14.0
+* Numpy
+* Scikit-Learn
+* Matplotlib
+
+Additional requirements to generate dataset:
+
+* PyDicom
+* Pandas
 
 
 
@@ -16,13 +33,7 @@ Corona-Nidaan: Lightweight Deep Convolutional Neural Network for Chest X-Ray bas
 
 
 If you find our work useful, can cite our paper using:
-    @misc{lia_corrales_2015_15991,
-        author       = {Lia Corrales},
-        title        = {{dust: Calculate the intensity of dust scattering halos in the X-ray}},
-        month        = mar,
-        year         = 2015,
-        doi          = {10.5281/zenodo.15991},
-        version      = {1.0},
-        publisher    = {Zenodo},
-        url          = {https://doi.org/10.5281/zenodo.15991}
+```
+@misc{
         }
+```        
