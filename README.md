@@ -19,7 +19,7 @@ The main requirements are listed below:
 * Keras 2.2.4 API
 * Tested with TensorFlow-GPU v1.14.0
 * Numpy
-* Scikit-Learn
+* Pillow
 * Matplotlib
 
 ## ChestX Dataset
