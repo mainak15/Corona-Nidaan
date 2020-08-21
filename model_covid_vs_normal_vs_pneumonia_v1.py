@@ -55,15 +55,7 @@ def multiple_outputs(generator, image_dir, batch_size, image_size,classes):
         yield gnext[0], [gnext[1], gnext[1], gnext[1]]
 
 def get_generators():
-    '''
-    train_datagen = ImageDataGenerator(
-        rescale=1./255,
-    shear_range=0.1,
-    zoom_range=0.1,
-    horizontal_flip=True,
-        rotation_range=10,
-                )'''
-
+    
     train_datagen = ImageDataGenerator(rescale=1./255)
     test_datagen = ImageDataGenerator(rescale=1./255)
 
@@ -76,14 +68,7 @@ def get_generators():
         shuffle=True,
         classes=['COVID-19','normal','pneumonia'],
         class_mode='categorical')
-    '''
-    train_generator = multiple_outputs(
-        train_datagen,
-        image_dir=train_data_dir,
-        batch_size=4,
-        image_size=256,
-        classes=['COVID-19','normal','pneumonia'])
-    '''
+    
     validation_generator = test_datagen.flow_from_directory(
         valid_data_dir,
         target_size=(256, 256),
@@ -91,13 +76,7 @@ def get_generators():
         shuffle=True,
         classes=['COVID-19','normal','pneumonia'],
         class_mode='categorical')
-    '''
-    validation_generator = multiple_outputs(
-        test_datagen,
-        image_dir=valid_data_dir,
-        batch_size=4,
-        image_size=256,
-        classes=['COVID-19','normal','pneumonia'])'''
+    
 
     return train_generator, validation_generator
 
@@ -185,13 +164,7 @@ def decay(epoch, steps=100):
 sgd = SGD(lr=initial_lrate, momentum=0.9, nesterov=False)
 
 lr_sc = LearningRateScheduler(decay, verbose=1)
-'''
-optimizer = Adam(lr=1e-4, decay=1e-3)
-scheduler = keras.callbacks.ReduceLROnPlateau(monitor='val_loss',
-                                  factor=0.7,
-                                  patience=5,
-                                  mode='max',
-                                  min_lr=1e-7)'''
+
 
 def srima():
     input_layer = Input(shape=(256, 256, 3))
@@ -235,40 +208,7 @@ def srima():
                          n_filters=832,
                          name='inception_4a')
 
-    '''
-    x = inception_module(x,
-                         filters_1x1=64,
-                         filters_3x3_reduce=96,
-                         filters_3x3=128,
-                         filters_5x5_reduce=16,
-                         filters_5x5=32,
-                         filters_pool_proj=32,
-                         name='inception_3a')
-    #x = BatchNormalization()(x)
-    #x = MaxPooling2D((3, 3), padding='same', strides=(2, 2), name='max_pool_3_3x3/2')(x)
-    #x=residual_module(x, 64)
-    
-    x = inception_module(x,
-                         filters_1x1=128,
-                         filters_3x3_reduce=128,
-                         filters_3x3=192,
-                         filters_5x5_reduce=32,
-                         filters_5x5=96,
-                         filters_pool_proj=64,
-                         name='inception_3b')
-
-    x = BatchNormalization()(x)
-    x = MaxPooling2D((3, 3), padding='same', strides=(2, 2), name='max_pool_4_3x3/2')(x)
-
-
-    x = inception_module(x,
-                         filters_1x1=192,
-                         filters_3x3_reduce=96,
-                         filters_3x3=208,
-                         filters_5x5_reduce=16,
-                         filters_5x5=48,
-                         filters_pool_proj=64,
-                         name='inception_4a')'''
+   
 
     x1 = GlobalAveragePooling2D(name='avg_pool_5_3x3/1')(x)
     
@@ -285,18 +225,7 @@ def srima():
 
     model = Model(input_layer, x1, name='COVIDNet')
     
-    # compile the model (should be done *after* setting layers to non-trainable)
-
-    #optimizer = Adam(lr=1e-3, decay=1e-5)
-    #optimizer=SGD(lr=0.0001, momentum=0.9)
-    #model.compile(optimizer=sgd, loss='categorical_crossentropy', metrics=['accuracy'])
-    #from contextlib import redirect_stdout
-
-    #with open('modelsummary.txt', 'w') as f:
-    #    with redirect_stdout(f):
-    #        model.summary()    
-    #print(model.summary())
-    #plot_model(model, to_file='model_plot_covid_vs_normal_vs_pneumonia_v1_2.png', show_shapes=True, show_layer_names=True)
+    
     print("Number of layers in the base model: ", len(model.layers))
 
     return model
