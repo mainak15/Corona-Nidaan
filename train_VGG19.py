@@ -1,12 +1,4 @@
-"""
-Train on images split into directories. This assumes we've split
-our videos into frames and moved them to their respective folders.
 
-Based on:
-https://keras.io/preprocessing/image/
-and
-https://keras.io/applications/
-"""
 from keras.applications.vgg19 import VGG19
 from keras.optimizers import SGD,Adam
 from keras.preprocessing.image import ImageDataGenerator
