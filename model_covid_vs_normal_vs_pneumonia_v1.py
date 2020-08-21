@@ -23,7 +23,7 @@ from tensorflow.keras.regularizers import l2
 
 #data = DataSet()
 train_data_dir = 'data/train3'
-valid_data_dir = 'data/predict'
+valid_data_dir = 'data/test3'
 # Helper: Save the model.
 batch_size=8
 checkpointer = ModelCheckpoint(
