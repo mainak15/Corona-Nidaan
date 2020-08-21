@@ -8,54 +8,7 @@ Corona-Nidaan: Lightweight Deep Convolutional Neural Network for Chest X-Ray bas
 </p>
 Please see our paper for the details.
 
-## Project Structure
-The project looks similar to the directory structure below.
 
-```
-├── data
-│   ├── train3          <- Interpretability files
-|   |	├── COVID-19
-|   |	├── Normal
-|   |	└── Pneumonia
-|   ├── test3
-|   |	├── COVID-19
-|   |	├── Normal
-|   |	└── Pneumonia
-|   ├──predict
-|   |	├── COVID-19
-|   |	├── Normal
-|   |	└── Pneumonia
-│   └──                  <- Products of preprocessing
-|
-|
-├── documents
-|   ├── generated_images          <- Visualizations of model performance, experiments
-|   └── readme_images             <- Image assets for README.md
-├── results
-│   ├── logs                      <- TensorBoard logs
-│   └── models                    <- Trained model weights
-|
-├── src
-│   ├── custom                    <- Custom TensorFlow components
-|   |   └── metrics.py            <- Definition of custom TensorFlow metrics
-│   ├── data                      <- Data processing
-|   |   └── preprocess.py         <- Main preprocessing script
-│   ├── interpretability          <- Model interpretability scripts
-|   |   ├── gradcam.py            <- Script for generating Grad-CAM explanations
-|   |   └── lime_explain.py       <- Script for generating LIME explanations
-│   ├── models                    <- TensorFlow model definitions
-|   |   └── models.py             <- Script containing model definition
-|   ├── visualization             <- Visualization scripts
-|   |   └── visualize.py          <- Script for visualizing model performance metrics
-|   ├── predict.py                <- Script for running batch predictions
-|   └── train.py                  <- Script for training model on preprocessed data
-|
-├── .gitignore                    <- Files to be be ignored by git.
-├── config.yml                    <- Values of several constants used throughout project
-├── LICENSE                       <- Project license
-├── README.md                     <- Project description
-└── requirements.txt              <- Lists all dependencies and their respective versions
-```
 ## Requirements
 
 The main requirements are listed below:
