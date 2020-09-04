@@ -1,6 +1,6 @@
 Corona-Nidaan: Lightweight Deep Convolutional Neural Network for Chest X-Ray based COVID-19 Infection Detection.
 ===========
-
+This research is supported by the Defence Institute of Advanced Technology, DRDO Lab, Ministry of Defence, India, and the Indian National Academy of Engineering. The authors would like to thank Sardar Vallabhbhai Patel COVID Hospital, New Delhi, India, to facilitate validation of Corona-Nidaan against the Indian Patient X-Ray samples. The authors would like to thank NVIDIA for the GPU grant for carrying out deep learning based research work.
 <p align="center">
 	<img src="images/GUI1.png"  width="100%" height="100%">
 	<br>
