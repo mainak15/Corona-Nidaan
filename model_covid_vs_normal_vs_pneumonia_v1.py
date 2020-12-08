@@ -41,18 +41,7 @@ timestamp = time.time()
 csv_logger = CSVLogger(os.path.join('data', 'logs', 'covid_vs_normal_vs_pneumonia_v1' + '-' + 'training-' + \
         str(timestamp) + '.log'))
 
-def multiple_outputs(generator, image_dir, batch_size, image_size,classes):
-    gen = generator.flow_from_directory(
-        image_dir,
-        target_size=(image_size, image_size),
-        batch_size=batch_size,
-        classes=classes,
-        class_mode='categorical')
-    
-    while True:
-        gnext = gen.next()
-        # return image batch and 3 sets of lables
-        yield gnext[0], [gnext[1], gnext[1], gnext[1]]
+
 
 def get_generators():
     
@@ -172,9 +161,8 @@ def srima():
     x = SeparableConv2D(64, (7, 7), padding='same', strides=(2, 2), activation='relu', kernel_initializer=kernel_init, bias_initializer=bias_init, name='conv_1_7x7/2')(input_layer)
     x = BatchNormalization()(x)
     x = MaxPooling2D((3, 3), padding='same', strides=(2, 2), name='max_pool_1_3x3/2')(x)
-    #x = SeparableConv2D(64, (1, 1), padding='same', strides=(1, 1), activation='relu', name='conv_2a_3x3/1')(x)
-    #x = BatchNormalization()(x)
-    x = SeparableConv2D(192, (3, 3), padding='same', strides=(1, 1), activation='relu', kernel_initializer=kernel_init, bias_initializer=bias_init, name='conv_2b_3x3/1')(x)
+   
+    x = SeparableConv2D(192, (3, 3), padding='same', strides=(1, 1), activation='relu', kernel_initializer=kernel_init, bias_initializer=bias_init, name='conv_2_3x3/1')(x)
     x = BatchNormalization()(x)
     x = MaxPooling2D((3, 3), padding='same', strides=(2, 2), name='max_pool_2_3x3/2')(x)
 
@@ -186,7 +174,7 @@ def srima():
                          filters_5x5=32,
                          filters_pool_proj=32,
                          n_filters=256,
-                         name='inception_3a')
+                         name='iblock_1')
     x=residual_module(x,
                          filters_1x1=128,
                          filters_3x3_reduce=128,
@@ -195,9 +183,8 @@ def srima():
                          filters_5x5=96,
                          filters_pool_proj=64,
                          n_filters=480,
-                         name='inception_3b')
-    #x = BatchNormalization()(x)
-    #x = MaxPooling2D((3, 3), padding='same', strides=(2, 2), name='max_pool_3_3x3/2')(x)
+                         name='iblock_2')
+    
     x=residual_module(x,
                          filters_1x1=256,
                      filters_3x3_reduce=160,
@@ -206,24 +193,19 @@ def srima():
                      filters_5x5=128,
                      filters_pool_proj=128,
                          n_filters=832,
-                         name='inception_4a')
+                         name='iblock_3')
 
    
 
-    x1 = GlobalAveragePooling2D(name='avg_pool_5_3x3/1')(x)
+    x1 = GlobalAveragePooling2D(name='avg_pool')(x)
     
-    #x1 = SeparableConv2D(128, (1, 1), padding='same', activation='relu')(x1)
-    #x1 = BatchNormalization()(x1)
-    #x1 = Flatten()(x1)
-    #x1 =GlobalAveragePooling2D()(x1)
-    
-    #x1 = Dense(1024, activation='relu',kernel_regularizer=l2(0.001), bias_regularizer=l2(0.001))(x1)
+
     x1 = Dropout(0.4)(x1)
-    x1 = Dense(3, activation='softmax', name='auxilliary_output_1')(x1)
+    x1 = Dense(3, activation='softmax', name='output')(x1)
 
 
 
-    model = Model(input_layer, x1, name='COVIDNet')
+    model = Model(input_layer, x1, name='Corona-Nidaan')
     
     
     print("Number of layers in the base model: ", len(model.layers))
@@ -234,7 +216,7 @@ learning_rate_reduction = ReduceLROnPlateau(monitor='val_accuracy',
                                             verbose=1, 
                                             factor=0.5, 
                                             min_lr=0.00001)
-#scheduler = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5,patience=3,verbose=1, min_lr=0.00001)
+
 def train_model(model, nb_epoch, generators,callbacks=[]):
     from sklearn.utils import class_weight
     import numpy as np
